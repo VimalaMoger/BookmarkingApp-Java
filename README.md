@@ -1,0 +1,2 @@
+The project follows standards like MVC, and TDD approach(JUnit test), uses 2D arrays to manually store Book, Weblink, Movie data,  1D to store user data. This app uses MVC to manipulate and return data, Bookmarking or sharing a bookmark decision is made by randomization(Math.random()). Used Java.net classes to download the url content(only html pages),
+implemented java IO to read and write to a file
