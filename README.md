@@ -1,0 +1,3 @@
+Social bookmarking web aplication, where users can bookmark their favorite bookmarks, other features include to mark certain bookmarks as Kid-Friendly bookmarks, so that only kids can use, that is done by special type of Users called Editors, another feature was to share certain bookmarks with third party websites, used certain Java features to 
+implement the web application. Followed MVC Design Patter, View part simulates the browser, Data is stored in DataStore, data is simulated using java file modification to arrays: arrays are replaced by ArrayList, modifications to data: Data is read from files
+Background job- created runnable task, task to get all the weblinks, then download concurrently, once the job is done, wait for few seconds, continue with new set of values
