@@ -4,6 +4,8 @@ import com.example.Thrill.io.constants.Gender;
 import com.example.Thrill.io.dao.UserDao;
 import com.example.Thrill.io.entities.User;
 
+import java.util.List;
+
 public class UserManager {
     //using Singleton pattern
     private static UserManager instance = new UserManager();
@@ -20,14 +22,14 @@ public class UserManager {
         user.setId(id);
         user.setEmail(email);
         user.setPassword(password);
-        user.setFirstNsme(firstName);
+        user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setGender(gender);
         user.setUserType(userType);
         return user;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return dao.getUsers();
     }
 }

@@ -2,14 +2,16 @@ package com.example.Thrill.io.entities;
 
 import com.example.Thrill.io.constants.BookGenre;
 import com.example.Thrill.io.partner.Shareable;
+import lombok.Getter;
 import lombok.Setter;
 import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
 @Setter
+@Getter
 public class Book extends Bookmark implements Shareable {
 
-    private String image_url;
+    private String image_url ="";
     private String publisher;
     private int publicationYear;
     private String[] authors;

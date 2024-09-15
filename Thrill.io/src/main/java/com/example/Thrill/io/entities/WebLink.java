@@ -1,7 +1,9 @@
 package com.example.Thrill.io.entities;
 
 import com.example.Thrill.io.partner.Shareable;
+import lombok.Data;
 
+@Data
 public class WebLink extends Bookmark implements Shareable {
     private String url;
     private String host;
@@ -17,22 +19,6 @@ public class WebLink extends Bookmark implements Shareable {
         NOT_ELIGIBLE; //NOT ELIGIBLE FOR DOWNLOAD
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
     @Override
     public String toString() {
         return "WebLink [ url=" + url + ", host=" + host + "]";
@@ -44,22 +30,6 @@ public class WebLink extends Bookmark implements Shareable {
             return false;
         }
         return true;
-    }
-
-    public DownloadStatus getDownloadStatus() {
-        return downloadStatus;
-    }
-
-    public void setDownloadStatus(DownloadStatus downloadStatus) {
-        this.downloadStatus= downloadStatus;
-    }
-
-    public void setHtmlPage(String htmlPage) {
-        this.htmlPage= htmlPage;
-
-    }
-    public String getHtmlPage() {
-        return this.htmlPage;
     }
 
     @Override

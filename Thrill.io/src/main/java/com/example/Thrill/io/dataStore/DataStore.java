@@ -1,3 +1,4 @@
+/*
 package com.example.Thrill.io.dataStore;
 
 import com.example.Thrill.io.constants.BookGenre;
@@ -86,4 +87,4 @@ public class DataStore {
         //bookmarkIndex++;
     }
 
-}
+}*/
