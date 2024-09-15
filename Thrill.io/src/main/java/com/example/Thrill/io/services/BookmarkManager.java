@@ -7,10 +7,10 @@ import com.example.Thrill.io.dao.BookmarkDao;
 import com.example.Thrill.io.entities.*;
 import com.example.Thrill.io.util.HttpConnect;
 import com.example.Thrill.io.util.IOUtil;
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.Collection;
+import java.util.List;
 
 public class BookmarkManager {
     //using Singleton pattern
@@ -39,14 +39,14 @@ public class BookmarkManager {
 
     }
 
-    public Book createBook(long id, String title, String imageurl, int pblicationYear, String publisherId,
+    public Book createBook(long id, String title, String imageurl, int pblicationYear, String publisher,
                            String[] authors, BookGenre bookGenre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
         book.setImage_url(imageurl);
         book.setPublicationYear(pblicationYear);
-        book.setPublisher(publisherId);
+        book.setPublisher(publisher);
         book.setAuthors(authors);
         book.setGenre(bookGenre);
         book.setAmazonRating(amazonRating);
@@ -61,15 +61,15 @@ public class BookmarkManager {
         weblink.setHost(host);
         return weblink;
     }
-    public Bookmark[][] getBookmarks() {
+    public List<List<Bookmark>> getBookmarks() {
             return dao.getBookmarks();
         }
 
     public void saveUserBookmark(User user, Bookmark bookmark) {
         UserBookmark userBookmark = new UserBookmark(user,bookmark);
-        //userBookmark.setUser((user));
-        //userBookmark.setBookmark(bookmark);
-        if(bookmark instanceof WebLink){
+
+        //write html content into the file either using following code or multithreading
+     /*   if(bookmark instanceof WebLink){
             try{
                 String url = ((WebLink)bookmark).getUrl();
                 if(!url.endsWith(".pdf")){
@@ -83,7 +83,7 @@ public class BookmarkManager {
             } catch (URISyntaxException e) {
                 throw new RuntimeException(e);
             }
-        }
+        }*/
 
         dao.saveUserBookmark(userBookmark);
     }

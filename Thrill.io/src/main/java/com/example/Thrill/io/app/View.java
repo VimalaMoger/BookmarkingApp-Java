@@ -7,22 +7,24 @@ import com.example.Thrill.io.entities.Bookmark;
 import com.example.Thrill.io.entities.User;
 import com.example.Thrill.io.partner.Shareable;
 
+import java.util.List;
+
 public class View {
 
-    public static void browse(User user, Bookmark[][] bookmarks) {
+    public static void browse(User user, List<List<Bookmark>> bookmarks) {
         //1. bookmarking
         System.out.println("\n" + user.getEmail() + "is browsing items...");
         int bookmarkCount =0;
-        for(Bookmark[] bookmarkList : bookmarks) {
+        for(List<Bookmark> bookmarkList : bookmarks) {
             for(Bookmark bookmarkeach : bookmarkList) {
-                //if(bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
+
                 boolean isBookmarked = getBookmarkDecision(bookmarkeach);
                 if(isBookmarked) {
                     bookmarkCount++;
                     BookmarkController.getInstance().saveUserBookmark(user, bookmarkeach);
                     System.out.println("New Item Bookmarked "+ bookmarkeach);
                 }
-                //}
+
                 //2.userTypes marking the bookmark as kid-friendly
                 if(user.getUserType().equals(UserType.EDITOR.getType())
                         || user.getUserType().equals(UserType.CHIEF_EDITOR.getType())){

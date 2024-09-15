@@ -22,4 +22,13 @@ public enum BookGenre {
     public String getName() {
         return name;
     }
+
+    public static BookGenre valueOfName(String feature) {
+        for (BookGenre e : values()) {
+            if (e.name.equals(feature)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }

@@ -23,6 +23,23 @@ public class IOUtil {
         return text.toString();
     }
 
+    //Read data from files
+    public static void read(List<String> data, String filename) {
+        //try with resources
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                data.add(line);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static void write(String webpage, long id) {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("pages/" + String.valueOf(id) + ".html"), "UTF-8"))) {
             writer.write(webpage);

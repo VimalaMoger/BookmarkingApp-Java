@@ -1,6 +1,6 @@
 package com.example.Thrill.io.dao;
 
-import com.example.Thrill.io.dataStore.DataStore;
+import com.example.Thrill.io.dataStore.DataFromFile;
 import com.example.Thrill.io.entities.Book;
 import com.example.Thrill.io.entities.Bookmark;
 import com.example.Thrill.io.entities.UserBookmark;
@@ -10,29 +10,29 @@ import java.util.Collection;
 import java.util.List;
 
 public class BookmarkDao {
-    public Bookmark[][] getBookmarks() {
-        return DataStore.getBookmarks();
+    public List<List<Bookmark>> getBookmarks() {
+        return DataFromFile.getBookmarks();
     }
 
-    //background job class uses this
+    //background job class uses this method
     //storing in a collection object
     public List<WebLink> getAllWebLinks(){
         List<WebLink> result= new ArrayList<>();
-        Bookmark[][] bookmarks = DataStore.getBookmarks();
+        List<List<Bookmark>> bookmarks = DataFromFile.getBookmarks();
         List<WebLink> allWebLinks = getOnlyWeblinks(bookmarks);
         return allWebLinks;
     }
 
-    private List<WebLink> getOnlyWeblinks(Bookmark[][] bookmarks) {
+    private List<WebLink> getOnlyWeblinks(List<List<Bookmark>> bookmarks) {
         List<WebLink> result= new ArrayList<>();
-        Bookmark[]  allWebLinks = bookmarks[0];
+        List<Bookmark> allWebLinks = bookmarks.get(0);
         for(Bookmark bookmark : allWebLinks) {
             result.add((WebLink) bookmark);
         }
         return result;
     }
 
-    //background job class uses this
+    //background job class uses this method
     public List<WebLink> getWebLinks(WebLink.DownloadStatus downloadStatus){
         List<WebLink> result= new ArrayList<>();
         List<WebLink> allWebLinks = getAllWebLinks();
@@ -46,12 +46,12 @@ public class BookmarkDao {
 
 
     public void saveUserBookmark(UserBookmark userBookmark) {
-        DataStore.add(userBookmark);
+        DataFromFile.add(userBookmark);
     }
 
     public Bookmark getBook(long bookId) {
-        Bookmark[][] bookmarks = DataStore.getBookmarks();
-        Bookmark[]  allBooks = bookmarks[2];
+        List<List<Bookmark>> bookmarks = DataFromFile.getBookmarks();
+        List<Bookmark>  allBooks = bookmarks.get(2);
         for(Bookmark bookmark : allBooks) {
             if((bookmark).getId() == bookId){
                 return bookmark;
@@ -64,7 +64,7 @@ public class BookmarkDao {
     public Collection<Bookmark> getBooks(boolean isBookmarked, long id) {
         List<Bookmark> result = new ArrayList<>();
         if(isBookmarked) {
-            List<UserBookmark> userBookmarks = DataStore.getUserBookmarks();
+            List<UserBookmark> userBookmarks = DataFromFile.getUserBookmarks();
             for (UserBookmark userBookmark : userBookmarks) {
                 Bookmark bookmark = userBookmark.getBookmark();
                 if(bookmark instanceof Book) {
@@ -73,8 +73,8 @@ public class BookmarkDao {
             }
             return  result;
         }else{
-            Bookmark[][] bookmarks = DataStore.getBookmarks();
-            Bookmark[]  allBooks = bookmarks[2];
+            List<List<Bookmark>> bookmarks = DataFromFile.getBookmarks();
+            List<Bookmark> allBooks = bookmarks.get(2);
             for(Bookmark bookmark : allBooks) {
                 result.add(bookmark);
             }

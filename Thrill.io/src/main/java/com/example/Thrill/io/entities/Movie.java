@@ -1,7 +1,6 @@
 package com.example.Thrill.io.entities;
 
 import com.example.Thrill.io.constants.MovieGenre;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Arrays;

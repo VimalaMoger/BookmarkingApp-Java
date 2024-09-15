@@ -28,12 +28,22 @@ public enum MovieGenre {
     COMEDIES("Comedies"),
     DOCUMENTARIES("Documentaries"),
     FOREIGN_MOVIES("Foreign Movies");
+
     private MovieGenre(String feature) {
         this.feature = feature;
     }
     private String feature;
     public String getFeature() {
         return feature;
+    }
+
+    public static MovieGenre valueOfFeature(String feature) {
+        for (MovieGenre e : values()) {
+            if (e.feature.equals(feature)) {
+                return e;
+            }
+        }
+        return null;
     }
 
 }
